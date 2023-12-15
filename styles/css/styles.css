@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  font-family: "poppins";
+  font-weight: 300;
+  text-align: center;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url(../../../assets/fonts/Poppins-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: "poppins";
+  src: url(../../../assets/fonts/Poppins-Regular.ttf);
+  font-weight: 100;
+}
+.header__container {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  text-align: center;
+}
+
+.main__header {
+  width: 100%;
+  height: 600px;
+  background-image: url(../../../assets/images/rick-y-morty-temporada-4_3840x2400_xtrafondos\ 1.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+}
+
+.container {
+  color: #FFFFFF;
+  padding-top: 100px;
+}
+.container__title {
+  text-decoration: underline;
+}/*# sourceMappingURL=styles.css.map */

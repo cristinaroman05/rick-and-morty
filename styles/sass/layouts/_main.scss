@@ -1,0 +1,19 @@
+.main{
+    &__header{
+        width: 100%;
+        height: 600px;
+        background-image: url(../../../assets/images/rick-y-morty-temporada-4_3840x2400_xtrafondos\ 1.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        text-align: center;
+        
+    }
+    
+}
+.container{
+    color: $color-quinary;
+    padding-top: 100px;
+    &__title{
+        text-decoration: underline;
+    }
+}
