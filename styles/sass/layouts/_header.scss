@@ -1,0 +1,24 @@
+.header{
+    background-color: $color-octonary;
+    color: $color-terciary;
+    display: flex;
+    justify-content: space-between;
+    &__img{
+        margin-left: 20px;
+    }
+    &__container{
+        display: block;
+        margin: auto;
+    }
+    &__title{
+        font-family: 'poppins';
+        font-size: 16px;
+        font-weight: 300;
+        text-decoration: underline;
+    }
+    &__subtitle{
+        font-family: 'poppins';
+        font-size: 12px;
+        font-weight: 700;
+    }
+}

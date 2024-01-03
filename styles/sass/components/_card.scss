@@ -1,0 +1,64 @@
+.card{
+    width: 380px;
+    margin: auto;
+    &__container-details{
+        display: flex;
+        justify-content: flex-start;
+    }
+    &__img{
+        height: 132px;
+        margin-right: 20px;
+
+    }
+    &__title-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 15px 10px;
+    }
+    &__title{
+        font-size: 14px;
+        color:$color-octonary;
+        font-weight: 700;
+    }
+    &__title-info{
+        font-size: 12px;
+        background-color: $color-eleventh;
+        color: $color-quinary;
+        padding: 3px 20px;
+    }
+    &__title-info--dead{
+        font-size: 12px;
+        padding: 3px 20px;
+        background-color:red;
+        color:$color-quinary;
+    }
+    &__title-info--unknown{
+        font-size: 12px;
+        padding: 3px 20px;
+        background-color:#BBB;
+        color:$color-quinary;
+    }
+    &__info-container{
+        display: block;
+        width: 200px;
+    }
+    &__info-title{
+        font-size: 10px;
+        color: $color-primary;
+    }
+    &__info{
+        font-size: 14px;
+        color: $color-cuaternary;
+    }
+    &__button{
+        font-size: 12px;
+        font-weight: 700;
+        padding: 5px 130px;
+        text-align: center;
+        background-color: $color-terciary;
+        color: $color-twelveth;
+        border: none;
+        border-radius: 50px;
+    }
+}

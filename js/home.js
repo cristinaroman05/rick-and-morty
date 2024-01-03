@@ -1,4 +1,5 @@
 const printHome = () => {
+    
     mainContainer.innerHTML =`
     <section class="main__section">
             <div class="main__header">
@@ -12,18 +13,19 @@ const printHome = () => {
             </p>
             <div class="main__separator"></div>
             <div class="main__container-page">
-                <button data-link="characters"class="main__page">PERSONAJES</button>
-                <button data-link="seasons" class="main__page">TEMPORADAS</button>
-                <button data-link="locations" class="main__page">LOCALIZACIONES</button> 
+                <button data-link="CHARACTERS"class="main__page">PERSONAJES</button>
+                <button data-link="SEASONS" class="main__page">TEMPORADAS</button>
+                <button data-link="LOCATIONS" class="main__page">LOCALIZACIONES</button> 
             </div>
         </section>
     `;
-}
+    addEventsToHomeLinks();
+};
 const addEventsToHomeLinks = () =>{
-    const homeLinks =document.querySelectorAll('[data-link]');
+    const homeLinks = document.querySelectorAll('[data-link]');
     homeLinks.forEach(element => {
         element.addEventListener('click', () => {
             printPage(element.getAttribute('data-link'))
-        })
-    })
+        });
+    });
 };

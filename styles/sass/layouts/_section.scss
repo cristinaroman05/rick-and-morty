@@ -1,0 +1,17 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    @include adaptTo ('not-mobile'){
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    &__title{
+        font-size: 14px;
+        background-color: $color-tenth;
+        color:$color-secondary;
+        font-weight: 700;
+    }
+}
