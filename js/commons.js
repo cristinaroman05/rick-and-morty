@@ -16,9 +16,9 @@ const formatOptions = (option, options) => {
 const mapOptions = (options) => {
     let optionFormated = [];
     options.forEach( (element) => {
-        let idOption = element.replace("https://rickandmortyapi.com/api/episode/", "");
+        let idOption = element.replace("https://rickandmortyapi.com/api/episode/", " ");
         let episodesBlock ='';
-        episodesBlock += `<div class=“detail__info-episode” href=“${element}“>${idOption}</div>`;
+        episodesBlock += `<div class="detail__episode-info" href="${element}">${idOption}</div>`;
         optionFormated.push(episodesBlock);
     });
     return optionFormated;

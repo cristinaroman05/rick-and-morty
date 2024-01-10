@@ -3,6 +3,7 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
+    justify-content: center;
     @include adaptTo ('not-mobile'){
         display: flex;
         flex-direction: row;
@@ -13,5 +14,9 @@
         background-color: $color-tenth;
         color:$color-secondary;
         font-weight: 700;
+    }
+    &-img{
+        background-color: #F2F2F2;
+        height: 1200px;
     }
 }

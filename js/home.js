@@ -14,7 +14,7 @@ const printHome = () => {
             <div class="main__separator"></div>
             <div class="main__container-page">
                 <button data-link="CHARACTERS"class="main__page">PERSONAJES</button>
-                <button data-link="SEASONS" class="main__page">TEMPORADAS</button>
+                <button data-link="EPISODES" class="main__page">TEMPORADAS</button>
                 <button data-link="LOCATIONS" class="main__page">LOCALIZACIONES</button> 
             </div>
         </section>

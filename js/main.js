@@ -15,11 +15,13 @@ const printPage = (section, url) => {
             console.log('pintamos personajes');
         url ? printDetailCharacter(url) : printCharacters();
         break;
-        case 'SEASONS':
-            console.log('pintamos temporadas');
+        case 'EPISODES':
+            console.log('pintamos capítulos');
+        url ? printDetailEpisode(url) : printEpisodes();
         break;
         case 'LOCATIONS':
             console.log('pintamos localizaciones');
+        url ? printDetailLocation(url) : printLocations();
         default: 
         printHome();
     }
