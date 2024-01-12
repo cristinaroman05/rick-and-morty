@@ -7,6 +7,7 @@
     @include adaptTo('not-mobile'){
         display: flex;
         flex-wrap: nowrap;
+        justify-content: flex-start;
     }
     &__container-img{
         display: block;
@@ -16,6 +17,7 @@
             margin: 40px 50px;
             background-color: #F2F2F2;
         }
+        
     }
     &__img{
         width: 200px;
@@ -65,12 +67,23 @@
         background-color:#F2F2F2;
         color: $color-cuaternary;
     }
+    &__status--dead{
+        margin: 0;
+        padding: 10px 20px;
+        border-radius: 100px;
+        background-color:red;
+        color: $color-cuaternary;
+    }
+    &__status--unwnown{
+        margin: 0;
+        padding: 10px 20px;
+        border-radius: 100px;
+        background-color:#BBB;
+        color: $color-cuaternary;
+    }
     &__container-info{
         width: 100%;
         margin: 20px 0;
-        @include adaptTo('not-mobile'){
-            width: calc(100% - 250px);
-        }
     }
     &__info-title{
         display: flex;

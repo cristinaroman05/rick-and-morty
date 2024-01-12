@@ -16,19 +16,20 @@ const formatLocationsCards = (locations) =>{
     let templateLocation = locations.map(location =>{
         return`
             <article class= "card--locations">
-                    <h2 class= "card__title--episode"> ${location.name}</h2>
-                    <div class= "card__container-location">
-                        <div class= "card__info-container--date">
-                            <p class= "card__info-title"> TYPE </p>
-                            <h2 class= "card__info-location"> ${location.type} </h2>
-                        </div>
-                        <div class= "card__info-container--dimension">
-                            <p class= "card__info-title"> DIMENSION </p>
-                            <h2 class= "card__info-location">${location.dimension} </h2>
-                        </div>
+                <h2 class= "card__title--episode"> ${location.name}</h2>
+                <div class= "card__container-location">
+                    <div class= "card__info-container--type">
+                        <p class= "card__info-title"> TYPE </p>
+                        <h2 class= "card__info-location"> ${location.type} </h2>
                     </div>
-                    <button class= "card__button--locations">+MORE DETAILS</button>
+                    <div class= "card__info-container--dimension">
+                        <p class= "card__info-title"> DIMENSION </p>
+                        <h2 class= "card__info-location">${location.dimension} </h2>
+                    </div>
+                </div>
+                <button class= "card__button--locations">+MORE DETAILS</button>
             </article>
+    
         `
     }).join('');
     return templateLocation;
@@ -55,6 +56,7 @@ const mapDataLocations = (data) => {
         type: location.type,
         dimension: location.dimension,
         residents: location.residents,
+        urlDetail: location.url,
     }
         return object;
     })

@@ -6,8 +6,9 @@ const printCharacters = () => {
         mainContainer.innerHTML =`
         <h1 class= "section__title">CHARACTERS FINDER</h1>
         <section class= "section">
-                ${charactersCards}
-            </section>        
+            ${charactersCards}
+        </section> 
+        <button onclick=${nextPage()} class= "button">+MORE</button>
             `;
             addEventsToCharactersLinks(response);
     }) 
@@ -35,6 +36,7 @@ const formatCharactersCards = (characters) =>{
                 </div>
                 <button class= "card__button">+MORE DETAILS</button>
             </article>
+            
         `
     }).join('');
     return templateCharacter;
@@ -48,11 +50,17 @@ const addEventsToCharactersLinks = (characters) => {
     });
 }
 const getCharacters = async() =>{
-    let url = URL_BASE + "/character/";
+    
+    let url = URL_BASE + "/character/?page=";
     let response = await fetch (url);
     let data = await response.json();
     data = mapDataCharacters(data.results);
     return data;
+}
+function nextPage(){
+    let page = 0;
+    page++;
+    getCharacters();
 }
 const mapDataCharacters = (data) => {
     let dataMapped = data.map (character => {
@@ -71,6 +79,7 @@ const mapDataCharacters = (data) => {
     return dataMapped;
 }
 const adaptStatus = (status) => {
+console.log(status);
     let classStatus;
 if(status === 'unknown'){
     classStatus ='card__title-info--unknown';
@@ -78,7 +87,7 @@ if(status === 'unknown'){
 if(status === 'Dead'){
     classStatus ='card__title-info--dead';
 }
-else if(
+else if (
     status === 'Alive'){
     classStatus ='card__title-info';
 }

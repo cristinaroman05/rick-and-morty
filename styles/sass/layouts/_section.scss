@@ -14,9 +14,15 @@
         background-color: $color-tenth;
         color:$color-secondary;
         font-weight: 700;
+        @include adaptTo ('not-mobile'){
+            font-size: 18px;
+        }
     }
     &-img{
-        background-color: #F2F2F2;
-        height: 1200px;
+        @include adaptTo('not-mobile'){
+            background-color: #F2F2F2;
+            height: 1200px;  
+        }
+        
     }
 }

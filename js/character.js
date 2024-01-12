@@ -10,7 +10,9 @@ const printDetailCharacter = (url) =>{
             </section>
         </section>
         `;
-        adaptStatus(response.status);
+        addEventsToLocationLinks(response.urllocation);
+        addEventsToEpisodeLinks(response.urlEpisode);
+        
     })
 }
 const getCharacter = async (url) =>{
@@ -73,6 +75,43 @@ const formatCharacterDetail = (character) => {
             </div>
         </div>
     </div>
-        `;
-        
+        `;    
 }
+const addEventsToLocationLinks = (location) => {
+    let locationLinks = [...document.getElementsByClassName('detail__info--location')];
+    locationLinks.forEach((element, i) => {
+        element.addEventListener('click', () => {
+            console.log(location)
+            printPage('LOCATIONS', location[i]);
+        })
+    });
+}
+const addEventsToEpisodeLinks = (episode) => {
+    let episodeLinks = [...document.getElementsByClassName('detail__episode-container')];
+    episodeLinks.forEach((element, i) => {
+        element.addEventListener('click', () => {
+            console.log(episode)
+            printPage('EPISODES', episode[i]);
+        })
+    });
+}
+// const adaptStatusCharacter = (status) => {
+//     const alive = document.getElementById("alive");
+//     const dead = document.getElementById("dead");
+//     const unknown = document.getElementById("unknown");
+//     if (status === "Alive") {
+//       classList.add("detail__status--alive");
+//     } else {
+//       classList.remove("detail__status--alive");
+//     }
+//     if (status === "Dead") {
+//       classList.add("detail__status--dead");
+//     } else {
+//      classList.remove("detail__status--dead");
+//     }
+//     if (status === "unknown") {
+//       classList.add("detail__status--unknown");
+//     } else {
+//       classList.remove("detail__status--unknown");
+//     }
+//   };

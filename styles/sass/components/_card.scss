@@ -85,7 +85,10 @@
         background-color: $color-senary;
         color: $color-twelveth;
     }
-    &__info-container--date{
+    &__info-date{
+        font-size: 14px;
+    }
+    &__info-container--type{
         width: 43%;
         border-right: 1px solid gray;
     }
@@ -99,6 +102,7 @@
         width: 350px;
         height: 210px;
         display: flex;
+        justify-content: space-around;
         align-content: center;
         flex-direction: column;
         flex-wrap: wrap;

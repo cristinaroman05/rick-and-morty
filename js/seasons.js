@@ -17,14 +17,14 @@ const formatEpisodesCards = (episodes) =>{
         return`
             <article class= "card--episode">
                     <h2 class= "card__title--episode"> ${episode.episode}</h2>
-                    <div class= "card__info-container--date">
-                        <p class= "card__info-title"> DATE </p>
-                        <h2 class= "card__info-date"> ${episode.date} </h2>
-                    </div>
-                    <div class= "card__info-container--episode">
-                        <p class= "card__info-title"> EPISODES </p>
-                        <h2 class= "card__info--episode">${episode.name} </h2>
-                    </div>
+                        <div class= "card__info-container--date">
+                            <p class= "card__info-title"> DATE </p>
+                            <h2 class= "card__info-date"> ${episode.date} </h2>
+                        </div>
+                        <div class= "card__info-container--episode">
+                            <p class= "card__info-title"> EPISODES </p>
+                            <h2 class= "card__info--episode">${episode.name} </h2>
+                        </div>
             </article>
         `
     }).join('');

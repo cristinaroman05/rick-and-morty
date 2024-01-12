@@ -10,7 +10,7 @@ const printDetailEpisode = (url) =>{
             </section>
         </section>
         `;
-        
+        addEventsToCharacterLinks(response.urlCharacter);
     })
 }
 const getEpisode = async (url) =>{
@@ -25,7 +25,8 @@ const formatDataEpisode = (data) =>{
         name:data.name,
         episode:data.episode,
         date: data.air_date,
-        characters: characterOptions(data.characters) ,
+        characters: characterOptions(data.characters).join(' '),
+        urlCharacter:data.characters,
     }
     return dataFormated;
 }
@@ -33,37 +34,26 @@ const formatEpisodeDetail = (episode) => {
     return `
     <div class="episode__detail-container">
         <div class="episode__detail-header">
-            <h1 class="episode__detail-title">
-            ${episode.name}
-            </h1>
+            <h1 class="episode__detail-title">${episode.name}</h1>
         </div>
         <div class="episode__detail-data">
             <div class="episode__detail-info">
-                <h1 class="episode__info">
-                EPISODE
-                </h1>
-                <p class="episode__info-text">
-                ${episode.episode}
-                </p>
+                <h1 class="episode__info">EPISODE</h1>
+                <p class="episode__info-text">${episode.episode}</p>
             </div>
             <div class="episode__detail-info">
-                <h1 class="episode__info">
-                    DATE
-                </h1>
-                <p class="episode__info-text">
-                ${episode.date}
-                </p>
+                <h1 class="episode__info">DATE</h1>
+                <p class="episode__info-text">${episode.date}</p>
             </div>
-        </div>
-        <div class="episode__characters">
-            <h1 class="episode__info-characters">CHARACTERS</h1>
-            <div class="episode__detail-characters">
-                <div class="episode__info-character">
-                    <img ${episode.characters}>
+            <div class="episode__characters">
+                <h1 class="episode__info-characters">CHARACTERS</h1>
+                <div class="episode__detail-characters">
+                    <div class="episode__info-character">
+                        <img ${episode.characters}>
+                    </div>
                 </div>
-            </div>
+            </div> 
         </div>
-        
 </div>
     `;
 }
@@ -74,9 +64,17 @@ const characterOptions = (options) => {
         let idCharacter = stringParts[stringParts.length - 1];
         let auxObject = `
         <div class="episode__info-character">
-        <img class="episode__img-small card_link" src="https://rickandmortyapi.com/api/character/avatar/${idCharacter}.jpeg" href="${element}">
+        <img class="episode__img-small card_link" src="https://rickandmortyapi.com/api/character/avatar/${idCharacter}.jpeg" href="${element}" >
         </div>`
         charactersFormated.push(auxObject);
     });
     return charactersFormated;
+}
+const addEventsToCharacterLinks = (characters) => {
+    let characterLinks = [...document.getElementsByClassName('episode__info-character')];
+    characterLinks.forEach((element, i) => {
+        element.addEventListener('click', () => {
+            printPage('CHARACTERS', characters[i]);
+        })
+    });
 }

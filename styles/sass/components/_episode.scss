@@ -3,24 +3,41 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        @include adaptTo ('not-mobile'){
+            display: flex;
+            flex-direction: row;
+        }
     }
     &__detail-header{
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 270px;
+        width: 320px;
         height: 50px;
         border-radius: 100px;
         margin: 30px;
         background-color: $color-senary;
         color: $color-secondary;
+        @include adaptTo ('not-mobile'){
+            height: 155vh;
+            width: 50vw;
+            border-radius: 0;
+            margin: 0;
+        }
     }
     &__detail-title{
         font-size: 20px;
         font-weight: 700;
+        @include adaptTo ('not-mobile'){
+            font-size: 40px;
+            padding: 100px;
+        }
     }
     &__info{
         text-align: start;
+        color: $color-primary;
+        font-size: 14px;
+        font-weight: 700;
     }
     &__info-text{
         width: 260px;
@@ -37,17 +54,17 @@
     &__characters{
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: baseline;
     }
-    &__info-characters{
-        margin-left: 40px;
-    }
+    // &__info-characters{
+    //     margin-left: 40px;
+    // }
     &__detail-characters{
         display: flex;
         flex-wrap:wrap;
         align-items: center;
-        justify-content: center;
-        width: 360px;
+        justify-content: flex-start;
+        
     }
     &__img-small{
         width: 90px;
@@ -55,5 +72,14 @@
         margin-top: 10px;
         border: 2px solid $color-tenth;
         border-radius: 100px;
+    }
+    &__detail-data{
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        margin: 10px 20px;
+        @include adaptTo('not-mobile'){
+            margin: 45px 30px;
+        }
     }
 }
