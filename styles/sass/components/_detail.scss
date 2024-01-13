@@ -15,7 +15,7 @@
             display: flex;
             flex-direction: column;
             margin: 40px 50px;
-            background-color: #F2F2F2;
+            background-color: $color-thirteenth;
         }
         
     }
@@ -34,8 +34,8 @@
     &__title{
         align-self: center;
         font-size: 20px;
-        border-bottom: 2px solid #563461;
-        color: #563461;
+        border-bottom: 2px solid $color-octonary;
+        color: $color-octonary;
         font-weight: 700;
     }
     &__container{
@@ -64,22 +64,17 @@
         margin: 0;
         padding: 10px 20px;
         border-radius: 100px;
-        background-color:#F2F2F2;
+        background-color:$color-thirteenth;
         color: $color-cuaternary;
-    }
-    &__status--dead{
-        margin: 0;
-        padding: 10px 20px;
-        border-radius: 100px;
-        background-color:red;
-        color: $color-cuaternary;
-    }
-    &__status--unwnown{
-        margin: 0;
-        padding: 10px 20px;
-        border-radius: 100px;
-        background-color:#BBB;
-        color: $color-cuaternary;
+        &--alive {
+            background-color: $color-eleventh;
+        }
+        &--dead{
+            background-color:$color-fourteenth;
+        }
+        &--unkwnown {
+            background-color:$color-fifteenth;
+        }
     }
     &__container-info{
         width: 100%;
@@ -90,7 +85,7 @@
         font-size: 14px;
         font-weight: 700;
         margin-bottom: 5px;
-        color: #A6A6A6;
+        color: $color-sixteenth;
         
     }
     &__info{
@@ -99,7 +94,7 @@
         padding: 5px 10px;
         border-top-right-radius: 100px;
         border-bottom-right-radius: 100px;
-        background-color: #F2F2F2;
+        background-color: $color-thirteenth;
         color: $color-cuaternary;
     }
     &__info--location{
@@ -109,6 +104,7 @@
         padding: 5px 10px;
         background-color: $color-terciary;
         color: $color-cuaternary;
+        cursor: pointer;
     }
     &__episode-container{
         display: flex;
@@ -126,8 +122,9 @@
         padding: 6px 26px;
         height: 25px;
         font-size: 20px;
-        background-color: #EEE4F1;
-        color: #563461;
+        background-color: $color-terciary;
+        color: $color-octonary;
+        cursor: pointer;
     }
 
 }

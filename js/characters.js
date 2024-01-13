@@ -1,14 +1,13 @@
 const printCharacters = () => {
     mainContainer.innerHTML = "";
     getCharacters().then(response =>{
-        console.log(response);
         let charactersCards = formatCharactersCards(response);
         mainContainer.innerHTML =`
         <h1 class= "section__title">CHARACTERS FINDER</h1>
         <section class= "section">
             ${charactersCards}
         </section> 
-        <button onclick=${nextPage()} class= "button">+MORE</button>
+        <button class= "button">+MORE</button>
             `;
             addEventsToCharactersLinks(response);
     }) 
@@ -19,7 +18,7 @@ const formatCharactersCards = (characters) =>{
             <article class= "card">
                 <div class= "card__title-container">
                     <h2 class= "card__title"> ${character.name} </h2>
-                    <p class="card__title-info ${adaptStatus(character.status)}">  ${character.status}</p>
+                    <p class="${adaptStatus(character.status)}">  ${character.status}</p>
                 </div>
                 <div class="card__container-details">
                     <img class= "card__img"src=${character.img}>
@@ -50,48 +49,37 @@ const addEventsToCharactersLinks = (characters) => {
     });
 }
 const getCharacters = async() =>{
-    
-    let url = URL_BASE + "/character/?page=";
+    let url = URL_BASE + "/character/";
     let response = await fetch (url);
     let data = await response.json();
     data = mapDataCharacters(data.results);
     return data;
 }
-function nextPage(){
-    let page = 0;
-    page++;
-    getCharacters();
-}
 const mapDataCharacters = (data) => {
     let dataMapped = data.map (character => {
-    let object = {
-        img: "https://rickandmortyapi.com/api/character/avatar/" + character.id +'.jpeg',
-        name: character.name,
-        status: character.status.toUpperCase(),
-        species: character.species,
-        gender: character.gender,
-        origin: character.origin.name,
-        location: character.location.name,
-        urlDetail: character.url,
-    }
-        return object;
+        return {
+            img: "https://rickandmortyapi.com/api/character/avatar/" + character.id +'.jpeg',
+            name: character.name,
+            status: character.status.toUpperCase(),
+            species: character.species,
+            gender: character.gender,
+            origin: character.origin.name,
+            location: character.location.name,
+            urlDetail: character.url,
+        }
+        
     })
     return dataMapped;
 }
 const adaptStatus = (status) => {
-console.log(status);
-    let classStatus;
-if(status === 'unknown'){
-    classStatus ='card__title-info--unknown';
-}
-if(status === 'Dead'){
-    classStatus ='card__title-info--dead';
-}
-else if (
-    status === 'Alive'){
-    classStatus ='card__title-info';
-}
-return classStatus;
+    let classStatus = 'card__title-info ';
+    if(status === 'UNKNOWN'){
+        classStatus +='card__title-info--unknown';
+    }
+    if(status === 'DEAD'){
+        classStatus +='card__title-info--dead';
+    }
+    return classStatus;
 }
 
 

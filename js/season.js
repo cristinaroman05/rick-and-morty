@@ -1,4 +1,5 @@
-const printDetailEpisode = (url) =>{
+const printDetailEpisode = (episode) =>{
+    const url = "https://rickandmortyapi.com/api/episode/" + episode;
     getEpisode(url).then(response =>{
         console.log(response);
         let episodeDetail = formatEpisodeDetail(response);
@@ -10,7 +11,6 @@ const printDetailEpisode = (url) =>{
             </section>
         </section>
         `;
-        addEventsToCharacterLinks(response.urlCharacter);
     })
 }
 const getEpisode = async (url) =>{
@@ -27,6 +27,7 @@ const formatDataEpisode = (data) =>{
         date: data.air_date,
         characters: characterOptions(data.characters).join(' '),
         urlCharacter:data.characters,
+        urlDetail: data.url,
     }
     return dataFormated;
 }
@@ -64,17 +65,12 @@ const characterOptions = (options) => {
         let idCharacter = stringParts[stringParts.length - 1];
         let auxObject = `
         <div class="episode__info-character">
-        <img class="episode__img-small card_link" src="https://rickandmortyapi.com/api/character/avatar/${idCharacter}.jpeg" href="${element}" >
+        <img class="episode__img-small card_link" onclick="addEventsToCharacterLinks('${element}')" src="https://rickandmortyapi.com/api/character/avatar/${idCharacter}.jpeg" >
         </div>`
         charactersFormated.push(auxObject);
     });
     return charactersFormated;
 }
-const addEventsToCharacterLinks = (characters) => {
-    let characterLinks = [...document.getElementsByClassName('episode__info-character')];
-    characterLinks.forEach((element, i) => {
-        element.addEventListener('click', () => {
-            printPage('CHARACTERS', characters[i]);
-        })
-    });
-}
+const addEventsToCharacterLinks = (character) => {
+    printPage('CHARACTERS', character);
+ }

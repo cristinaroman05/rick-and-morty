@@ -1,6 +1,5 @@
 const printDetailCharacter = (url) =>{
     getCharacter(url).then(response =>{
-        console.log(response);
         let characterDetail = formatCharacterDetail(response);
         mainContainer.innerHTML =`
         <section class="section__character">
@@ -10,9 +9,6 @@ const printDetailCharacter = (url) =>{
             </section>
         </section>
         `;
-        addEventsToLocationLinks(response.urllocation);
-        addEventsToEpisodeLinks(response.urlEpisode);
-        
     })
 }
 const getCharacter = async (url) =>{
@@ -22,22 +18,39 @@ const getCharacter = async (url) =>{
     return data;
 }
 const formatDataCharacter = (data) =>{
-    let dataFormated ={
+    const urlLocationSplitted = data.location.url.split("/");
+    return {
         img:"https://rickandmortyapi.com/api/character/avatar/" + data.id +'.jpeg',
         name: data.name.toUpperCase(),
         status: data.status,
         species: data.species,
         origin: data.origin.name,
         location: data.location.name,
-        episode: mapOptions(data.episode),
+        episode: formatEpisode(data.episode),
         urlDetail: data.url,
         urlEpisode: data.episode,
-        urllocation: data.location,
+        idLocation: urlLocationSplitted[urlLocationSplitted.length -1],
     }
-    return dataFormated;
 }
+const formatEpisode =(episodes) => {
+    const episodesMapper =  episodes.map(value => {
+        const spliter = value.split('/');
+        return spliter[spliter.length - 1]
+    });
+    return mapOptions(episodesMapper)
+}
+
+const mapOptions = (options) => {
+    let optionFormated = '';
+    options.forEach((element) => {
+        optionFormated += `<div class="detail__episode-info" href="${element}" onclick="addEventsToEpisodeLinks(${element})">${element}</div>`;
+        
+    });
+    
+    return optionFormated;
+}
+
 const formatCharacterDetail = (character) => {
-    let episode = formatOptions('episode', character.episode);
     return `
     <div class="detail">
         <div class="section-img">
@@ -50,9 +63,9 @@ const formatCharacterDetail = (character) => {
             <div class="detail__status-container">
                 <p class="detail__info-title">STATUS</p>
                 <div class="detail__status-block">
-                    <p id="alive" class="detail__status">ALIVE</p>
-                    <p id="dead"  class="detail__status">DEAD</p>
-                    <p id="unwnown" class="detail__status">UNKNOWN</p>
+                    <p class="${adaptStatusCharacter(character.status, 'Alive')}">ALIVE</p>
+                    <p class="${adaptStatusCharacter(character.status, 'Dead')}">DEAD</p>
+                    <p class="${adaptStatusCharacter(character.status, 'Unknown')}">UNKNOWN</p>
                 </div>
             </div>
             <div class="detail__container-info">
@@ -65,7 +78,7 @@ const formatCharacterDetail = (character) => {
             </div>
             <div class="detail__container-info">
                 <p class="detail__info-title">LOCATION</p>
-                <p class="detail__info--location">${character.location}</p>
+                <p class="detail__info--location" onclick="addEventsToLocationLinks(${character.idLocation})">${character.location}</p>
             </div>
             <div class= "detail__episode">
                 <p class="detail__info-title">EPISODE</p>
@@ -78,40 +91,25 @@ const formatCharacterDetail = (character) => {
         `;    
 }
 const addEventsToLocationLinks = (location) => {
-    let locationLinks = [...document.getElementsByClassName('detail__info--location')];
-    locationLinks.forEach((element, i) => {
-        element.addEventListener('click', () => {
-            console.log(location)
-            printPage('LOCATIONS', location[i]);
-        })
-    });
-}
+        printPage('LOCATIONS', location);
+        }
+    
+
 const addEventsToEpisodeLinks = (episode) => {
-    let episodeLinks = [...document.getElementsByClassName('detail__episode-container')];
-    episodeLinks.forEach((element, i) => {
-        element.addEventListener('click', () => {
-            console.log(episode)
-            printPage('EPISODES', episode[i]);
-        })
-    });
+        printPage('EPISODES', episode);
 }
-// const adaptStatusCharacter = (status) => {
-//     const alive = document.getElementById("alive");
-//     const dead = document.getElementById("dead");
-//     const unknown = document.getElementById("unknown");
-//     if (status === "Alive") {
-//       classList.add("detail__status--alive");
-//     } else {
-//       classList.remove("detail__status--alive");
-//     }
-//     if (status === "Dead") {
-//       classList.add("detail__status--dead");
-//     } else {
-//      classList.remove("detail__status--dead");
-//     }
-//     if (status === "unknown") {
-//       classList.add("detail__status--unknown");
-//     } else {
-//       classList.remove("detail__status--unknown");
-//     }
-//   };
+const adaptStatusCharacter = (status, valueButton) => {
+    let classStatus = 'detail__status ';
+    if(status === valueButton) {
+        if(status === 'Alive') {
+            classStatus +='detail__status--alive';
+        } else if (status === 'Unknown') {
+            classStatus +='detail__status--unknown';
+
+        } else if(status === 'Dead') {
+            classStatus +='detail__status--dead';
+
+        }
+    }
+    return classStatus;
+}

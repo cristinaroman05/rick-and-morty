@@ -1,4 +1,5 @@
-const printDetailLocation = (url) =>{
+const printDetailLocation = (location) =>{
+    const url = "https://rickandmortyapi.com/api/location/" + location;
     getLocation(url).then(response =>{
         console.log(response);
         let locationDetail = formatLocationDetail(response);
@@ -10,7 +11,6 @@ const printDetailLocation = (url) =>{
             </section>
         </section>
         `;
-    addEventsToCharacterLinks(response.urlCharacter);
     })
 }
 const getLocation = async (url) =>{

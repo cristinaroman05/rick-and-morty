@@ -30,13 +30,13 @@
     &__title-info--dead{
         font-size: 12px;
         padding: 3px 20px;
-        background-color:red;
+        background-color:$color-fourteenth;
         color:$color-quinary;
     }
     &__title-info--unknown{
         font-size: 12px;
         padding: 3px 20px;
-        background-color:#BBB;
+        background-color:$color-fifteenth;
         color:$color-quinary;
     }
     &__info-container{
@@ -61,10 +61,10 @@
         color: $color-twelveth;
         border: none;
         border-radius: 50px;
+        cursor: pointer;
     }
     &--episode{
         width: 300px;
-        height: 340px;
         display: flex;
         align-content: center;
         flex-direction: column;
@@ -97,6 +97,7 @@
         font-weight: 700;
         background-color: $color-terciary;
         margin: 10px;
+        cursor: pointer;
     }
     &--locations{
         width: 350px;
@@ -126,5 +127,6 @@
         color: $color-twelveth;
         border: none;
         border-radius: 50px;
+        cursor: pointer;
     }
 }

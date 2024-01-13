@@ -9,7 +9,6 @@ const printLocations = () => {
                 ${locationsCards}
             </section>        
             `;
-            addEventsToLocationsLinks(response);
     }) 
 };
 const formatLocationsCards = (locations) =>{
@@ -27,21 +26,14 @@ const formatLocationsCards = (locations) =>{
                         <h2 class= "card__info-location">${location.dimension} </h2>
                     </div>
                 </div>
-                <button class= "card__button--locations">+MORE DETAILS</button>
+                <button class= "card__button--locations" onclick="printPage('LOCATIONS', ${location.id})">+MORE DETAILS</button>
             </article>
     
         `
     }).join('');
     return templateLocation;
 }
-const addEventsToLocationsLinks = (locations) => {
-    let cardLinks = [...document.getElementsByClassName('card__button--locations')];
-    cardLinks.forEach((element, i) => {
-        element.addEventListener('click', () => {
-            printPage('LOCATIONS', locations[i].urlDetail);
-        })
-    });
-}
+
 const getLocations = async() =>{
     let url = URL_BASE + "/location/";
     let response = await fetch (url);
@@ -57,6 +49,7 @@ const mapDataLocations = (data) => {
         dimension: location.dimension,
         residents: location.residents,
         urlDetail: location.url,
+        id: location.id
     }
         return object;
     })

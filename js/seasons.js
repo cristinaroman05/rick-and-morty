@@ -1,60 +1,61 @@
 const printEpisodes = (url) => {
     mainContainer.innerHTML = "";
     getEpisodes(url).then(response =>{
-        console.log(response);
         let episodesCards = formatEpisodesCards(response);
         mainContainer.innerHTML =`
         <h1 class= "section__title">EPISODES</h1>
-        <section class= "section">
+        <section class= "section--episodes">
                 ${episodesCards}
             </section>        
             `;
-        addEventsToEpisodesLinks(response);      
     }) 
 };
-const formatEpisodesCards = (episodes) =>{
-    let templateEpisode = episodes.map(episode =>{
-        return`
+const formatEpisodesCards = (seasons) =>{
+    let templateEpisode = Object.keys(seasons).map(key =>{
+        const numberSeason = key.substring(2,3);
+        const season = seasons[key];
+        const date1 = season[0].air_date;
+        const date2 =season[season.length-1].air_date;
+        let template = `
             <article class= "card--episode">
-                    <h2 class= "card__title--episode"> ${episode.episode}</h2>
-                        <div class= "card__info-container--date">
-                            <p class= "card__info-title"> DATE </p>
-                            <h2 class= "card__info-date"> ${episode.date} </h2>
-                        </div>
-                        <div class= "card__info-container--episode">
-                            <p class= "card__info-title"> EPISODES </p>
-                            <h2 class= "card__info--episode">${episode.name} </h2>
-                        </div>
-            </article>
-        `
+                <h2 class= "card__title--episode"> Season ${numberSeason}</h2>
+                <div class= "card__info-container--date">
+                    <p class= "card__info-title"> DATE </p>
+                    <h2 class= "card__info-date"> ${date1} - ${date2}</h2>
+                </div>
+                <div class= "card__info-container--episode">
+                    <p class= "card__info-title"> EPISODES </p>
+        `;
+        season.forEach(episode => {
+            template += `<h2 class= "card__info--episode" onclick="printPage('EPISODES', ${episode.id})">${episode.name} </h2>`;
+        });
+        template += `</div></article>`
+        return template
+
     }).join('');
     return templateEpisode;
 }
 
 const getEpisodes = async() =>{
     let url = URL_BASE + "/episode/";
-    let response = await fetch (url);
+    let response = await fetch(url);
     let data = await response.json();
-    data = mapDataEpisodes(data.results);
-    return data;
+    let dataAll = data.results;
+    for (let i = 0; i < data.info.pages - 1;i++) {
+        let response = await fetch(data.info.next);
+        let data1 = await response.json();
+        dataAll = [...dataAll, ...data1.results];
+    }
+    return mapDataEpisodes(dataAll);
 }
 const mapDataEpisodes = (data) => {
-    let dataMapped = data.map (episode => {
-    let object = {
-        name: episode.name,
-        date: episode.air_date,
-        urlDetail: episode.url,
-        episode: episode.episode.replace("S", "SEASON"+ episode.episode[2])
-    }
-        return object;
-    })
-    return dataMapped;
-}
-const addEventsToEpisodesLinks = (episodes) => {
-    let cardLinks = [...document.getElementsByClassName('card__info--episode')];
-    cardLinks.forEach((element, i) => {
-        element.addEventListener('click', () => {
-            printPage('EPISODES', episodes[i].urlDetail);
-        })
-    });
+    return data.reduce((acc,curr)=>{
+        const season=curr.episode.substring(0,3);
+        if(Object.keys(acc).every(val=>val !== season)){
+            acc[season]=[curr];
+        }else{
+            acc[season].push(curr);
+        }
+        return acc;
+    },{});
 }

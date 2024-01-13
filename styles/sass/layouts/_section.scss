@@ -25,4 +25,41 @@
         }
         
     }
+    &--episodes{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    @include adaptTo ('tablet'){
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+    }
+    @include adaptTo ('desktop-m'){
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        text-align: center;
+        align-items: baseline;
+        justify-content: center;
+    }
+    @include adaptTo ('desktop-l'){
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        text-align: center;
+        align-items: baseline;
+        justify-content: center;
+    }
+    @include adaptTo ('desktop-xl'){
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        text-align: center;
+        align-items: baseline;
+        justify-content: center;
+    }
+    }
 }

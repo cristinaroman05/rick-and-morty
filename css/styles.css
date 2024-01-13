@@ -245,6 +245,51 @@
     height: 1200px;
   }
 }
+.section--episodes {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .section--episodes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .section--episodes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-items: baseline;
+    justify-content: center;
+  }
+}
+@media screen and (min-width: 1280px) and (max-width: 1439px) {
+  .section--episodes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-items: baseline;
+    justify-content: center;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .section--episodes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-items: baseline;
+    justify-content: center;
+  }
+}
 
 .card {
   width: 380px;
@@ -271,14 +316,14 @@
 }
 .card__title-info {
   font-size: 12px;
-  background-color: #81CE7F;
+  background-color: #9FD99E;
   color: #FFFFFF;
   padding: 3px 20px;
 }
 .card__title-info--dead {
   font-size: 12px;
   padding: 3px 20px;
-  background-color: red;
+  background-color: #D85252;
   color: #FFFFFF;
 }
 .card__title-info--unknown {
@@ -309,10 +354,10 @@
   color: #4D1F5B;
   border: none;
   border-radius: 50px;
+  cursor: pointer;
 }
 .card--episode {
   width: 300px;
-  height: 340px;
   display: flex;
   align-content: center;
   flex-direction: column;
@@ -345,6 +390,7 @@
   font-weight: 700;
   background-color: #EEE4F1;
   margin: 10px;
+  cursor: pointer;
 }
 .card--locations {
   width: 350px;
@@ -374,6 +420,7 @@
   color: #4D1F5B;
   border: none;
   border-radius: 50px;
+  cursor: pointer;
 }
 
 .detail {
@@ -454,19 +501,14 @@
   background-color: #F2F2F2;
   color: #000000;
 }
-.detail__status--dead {
-  margin: 0;
-  padding: 10px 20px;
-  border-radius: 100px;
-  background-color: red;
-  color: #000000;
+.detail__status--alive {
+  background-color: #9FD99E;
 }
-.detail__status--unwnown {
-  margin: 0;
-  padding: 10px 20px;
-  border-radius: 100px;
+.detail__status--dead {
+  background-color: #D85252;
+}
+.detail__status--unkwnown {
   background-color: #BBB;
-  color: #000000;
 }
 .detail__container-info {
   width: 100%;
@@ -495,6 +537,7 @@
   padding: 5px 10px;
   background-color: #EEE4F1;
   color: #000000;
+  cursor: pointer;
 }
 .detail__episode-container {
   display: flex;
@@ -514,6 +557,7 @@
   font-size: 20px;
   background-color: #EEE4F1;
   color: #563461;
+  cursor: pointer;
 }
 
 .episode__detail-container {
@@ -540,7 +584,7 @@
 }
 @media screen and (min-width: 768px) {
   .episode__detail-header {
-    height: 155vh;
+    height: 100vh;
     width: 50vw;
     border-radius: 0;
     margin: 0;
@@ -591,6 +635,7 @@
   margin-top: 10px;
   border: 2px solid #BEA1C7;
   border-radius: 100px;
+  cursor: pointer;
 }
 .episode__detail-data {
   display: flex;

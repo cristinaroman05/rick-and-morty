@@ -25,6 +25,7 @@ const printPage = (section, url) => {
         default: 
         printHome();
     }
+    window.scroll(0,0);
 };
 const adaptHeader = (section) => {
     console.log(section);
