@@ -7,7 +7,6 @@ const printCharacters = () => {
         <section class= "section">
             ${charactersCards}
         </section> 
-        <button class= "button">+MORE</button>
             `;
             addEventsToCharactersLinks(response);
     }) 
